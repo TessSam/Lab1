@@ -5,6 +5,8 @@ output: html_document
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(here)
 ```
 
 
@@ -80,6 +82,9 @@ str(by_month)
 ```{r}
 lapply(by_month, function(x) mean(x$Ozone, na.rm=TRUE))
 
+sapply(by_month, function(x) mean(x$Ozone, na.rm = TRUE))
+
+vapply(by_month, function(x) {mean(x$Ozone, na.rm = TRUE)}, double(1))
 ```
 
 ## 6.Produce separate plots showing the relation between Ozone and Solar.R for each month (with a single loop).
