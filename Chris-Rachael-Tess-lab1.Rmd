@@ -65,7 +65,9 @@ hint: Use str to inspect the list. This one is tricky and involves pulling an at
 
 ## 3.Use the “airquality” dataset, which is part of base R. Split it by Month
 ```{r}
-
+aq <- (airquality)
+by_month <- split(aq, aq$Month)
+str(by_month)
 ```
 
 ## 4.Use a for loop to calculate the mean Ozone by month (remember to remove missing data from the calculation)
@@ -76,6 +78,7 @@ hint: Use str to inspect the list. This one is tricky and involves pulling an at
 ## 5.Replicate this calculation with lapply, sapply, and vapply
 
 ```{r}
+lapply(by_month, function(x) mean(x$Ozone, na.rm=TRUE))
 
 ```
 
