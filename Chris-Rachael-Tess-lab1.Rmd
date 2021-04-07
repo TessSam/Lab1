@@ -5,6 +5,8 @@ output: html_document
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(here)
 ```
 
 
@@ -80,11 +82,23 @@ str(by_month)
 ```{r}
 lapply(by_month, function(x) mean(x$Ozone, na.rm=TRUE))
 
+sapply(by_month, function(x) mean(x$Ozone, na.rm = TRUE))
+
+vapply(by_month, function(x) {mean(x$Ozone, na.rm = TRUE)}, double(1))
 ```
 
 ## 6.Produce separate plots showing the relation between Ozone and Solar.R for each month (with a single loop).
 
 ```{r}
+#lapply ggplot to Ozone and Solar.R columns of each name
+lapply(names(by_month), function(x) {
+  ggplot(by_month[[x]], aes(Ozone, Solar.R)) +
+    geom_point() +
+    ggtitle(bquote(paste("Relationship Between Ozone density and Solar radiation \nfor month"~ .(x))))
+ }
+  )
+
+
 
 ```
 
