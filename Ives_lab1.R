@@ -1,5 +1,5 @@
 set.seed(123) # Set random number generation
-
+needs(tidyverse)
 m <- lm(mpg ~ hp + cyl + drat, mtcars)
 
 l <- list(a = list(m = matrix(1:12, ncol = 3),
@@ -57,9 +57,34 @@ vapply(by_month, function(x) {
 },
 double(1))
 
-
 months <- rep(NA, length(by_month))
 months
 # Produce separate plots showing the relation between Ozone and Solar.R for each month (with a single loop).
+lapply(by_month, function(x) {
+  ggplot(x, aes(Ozone, Solar.R)) +
+    geom_point() +
+    geom_smooth()
+})
 
 # Use a for loop to save the plots to a folder on your computer
+plots <- lapply(by_month, function(x) {
+  ggplot(x, aes(Ozone, Solar.R)) +
+    geom_point() +
+    geom_smooth()
+})
+
+("~/iCloud Drive/Documents/GitHub/Lab1")
+
+dir.create("~iCloud Drive/Documents/GitHub/Lab1/plots")
+filenames <- here::here("plots", 
+                        paste0("month", names(by_month), ".png"))
+filenames
+
+for(i in seq_along(plots)) {
+  ggsave(filenames[i],
+         plots[[i]],
+         device = "png",
+         width = 6.5, 
+         height = 8)
+}
+
