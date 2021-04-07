@@ -7,7 +7,9 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-```{r}
+
+
+```{r Q1}
 set.seed(123) # Set random number generation
 
 m <- lm(mpg ~ hp + cyl + drat, mtcars)
@@ -16,6 +18,76 @@ l <- list(a = list(m = matrix(1:12, ncol = 3),
               	   v = 1:7),
           b = data.frame(student = 1:15,
                          score = rnorm(15, 100, 10)))
+
+summary(m)
+```
+
+Run the above code
+
+# 1.From the model results:
+
+## Extract the qr tolerance (tol).
+
+```{r}
+
+```
+
+## Extract the term labels from the model.
+hint: Use str to inspect the list. This one is tricky and involves pulling an attribute from an attribute.
+
+```{r}
+
+```
+
+# From the list
+
+## Use at least two different methods to extract m.
+
+```{r}
+
+
+```
+
+## Extract the third column of m. Maintain the dimensions (matrix structure).
+
+```{r}
+
+```
+
+## Extract the score for student 7.
+
+```{r}
+
+```
+
+
+# **Loops**
+
+## 3.Use the “airquality” dataset, which is part of base R. Split it by Month
+```{r}
+
+```
+
+## 4.Use a for loop to calculate the mean Ozone by month (remember to remove missing data from the calculation)
+
+```{r}
+
+```
+## 5.Replicate this calculation with lapply, sapply, and vapply
+
+```{r}
+
+```
+
+## 6.Produce separate plots showing the relation between Ozone and Solar.R for each month (with a single loop).
+
+```{r}
+
+```
+
+## 7.Use a for loop to save the plots to a folder on your computer
+
+```{r}
 
 
 ```
