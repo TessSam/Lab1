@@ -90,14 +90,23 @@ vapply(by_month, function(x) {mean(x$Ozone, na.rm = TRUE)}, double(1))
 ## 6.Produce separate plots showing the relation between Ozone and Solar.R for each month (with a single loop).
 
 ```{r}
-#lapply ggplot to Ozone and Solar.R columns of each name
-lapply(names(by_month), function(x) {
-  ggplot(by_month[[x]], aes(Ozone, Solar.R)) +
-    geom_point() +
-    ggtitle(bquote(paste("Relationship Between Ozone density and Solar radiation \nfor month"~ .(x))))
+#lapply ggplot to Ozone and Solar.R columns for each name
+q6plots<- lapply(names(by_month), function(x) {
+          ggplot(by_month[[x]], aes(Ozone, Solar.R)) +
+            geom_point() +
+            ggtitle(paste("Relationship Between Ozone density and Solar radiation \nfor month", names(by_month[x]))) +
+            theme_bw()
  }
   )
+q6plots
 
+# #for loop, not need
+# sol_ozone <- vector("list", length(by_month))
+# for(i in seq_along(sol_ozone)) {
+#   sol_ozone[[i]] <- by_month[[i]][,1:2]
+# }
+# str(sol_ozone)
+# plot(sol_ozone[[1]])
 
 
 ```
@@ -105,6 +114,16 @@ lapply(names(by_month), function(x) {
 ## 7.Use a for loop to save the plots to a folder on your computer
 
 ```{r}
+#Directory specification
+plots <- here::here("q6plots", paste0("month", names(by_month), ".png"))
+plots
 
-
+#Save to file
+for (i in seq_along(q6plots)) {
+  ggsave(plots[i],
+         q6plots[[i]],
+         device = "png",
+         width = 6.5,
+         height = 8)
+}
 ```
