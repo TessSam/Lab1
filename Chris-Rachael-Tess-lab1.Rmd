@@ -75,7 +75,12 @@ str(by_month)
 ## 4.Use a for loop to calculate the mean Ozone by month (remember to remove missing data from the calculation)
 
 ```{r}
-
+months <- rep(NA, length(by_month))
+months
+for (i in seq_along(months)) {
+  months[i] <- mean(by_month[[i]]$Ozone, na.rm = TRUE)
+}
+months
 ```
 ## 5.Replicate this calculation with lapply, sapply, and vapply
 
