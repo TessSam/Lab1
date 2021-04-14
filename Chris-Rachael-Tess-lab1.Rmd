@@ -88,10 +88,10 @@ months
 ```{r}
 lapply(by_month, function(x) mean(x$Ozone, na.rm=TRUE))
 
-sapply(by_month, function(x) mean(x$Ozone, na.rm = TRUE), simplify = FALSE)
+sapply(by_month, function(x) mean(x$Ozone, na.rm = TRUE), simplify = TRUE)
 
 #need to output list? 
-vapp <- vapply(by_month, function(x) mean(x$Ozone, na.rm = TRUE), FUN.VALUE = double(1)) %>% as.list()
+vapply(by_month, function(x) mean(x$Ozone, na.rm = TRUE), FUN.VALUE = double(1))
 ```
 
 ## 6.Produce separate plots showing the relation between Ozone and Solar.R for each month (with a single loop).
@@ -101,6 +101,7 @@ vapp <- vapply(by_month, function(x) mean(x$Ozone, na.rm = TRUE), FUN.VALUE = do
 q6plots<- lapply(names(by_month), function(x) {
           ggplot(by_month[[x]], aes(Ozone, Solar.R)) +
             geom_point() +
+            geom_smooth() +
             ggtitle(paste("Relationship Between Ozone density and Solar radiation \nfor month", names(by_month[x]))) +
             theme_bw()
  }
