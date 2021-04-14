@@ -32,13 +32,17 @@ Run the above code
 ## Extract the qr tolerance (tol).
 
 ```{r}
-
+tol <- m[["qr"]]["tol"]
+tol
 ```
 
 ## Extract the term labels from the model.
 hint: Use str to inspect the list. This one is tricky and involves pulling an attribute from an attribute.
 
 ```{r}
+str(m)
+term_labels <- attr(m[["terms"]], "term.labels")
+term_labels
 
 ```
 
@@ -47,20 +51,22 @@ hint: Use str to inspect the list. This one is tricky and involves pulling an at
 ## Use at least two different methods to extract m.
 
 ```{r}
-
-
+m1 <- l$a$m
+m1
+m2 <- l[[1]][1]
+m2
 ```
 
 ## Extract the third column of m. Maintain the dimensions (matrix structure).
 
 ```{r}
-
+l$a$m[, 3]
 ```
 
 ## Extract the score for student 7.
 
 ```{r}
-
+l$b[7, "score"]
 ```
 
 
