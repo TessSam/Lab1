@@ -1,5 +1,10 @@
 ---
 title: "Lab1"
+author:
+  - "Tess Sameshima"
+  - "Chris Ives"
+  - "Rachael Latimer"
+  
 output: html_document
 ---
 
